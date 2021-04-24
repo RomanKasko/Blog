@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root "articles#index"
+  devise_for :users
+  root to: "home_page#index"
 
   resources :articles do
     resources :comments
