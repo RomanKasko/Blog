@@ -12,6 +12,12 @@
                   data: { confirm: "Are you sure?" } %></li>
 </ul>
 
+<div class="form-group"><br>
+  <% if @article.image.attached? %>
+    <%= image_tag @article.image, style: "width: 200px; display: block" %>
+  <% end %>
+</div>
+
 <h2>Comments</h2>
 <%= render @article.comments %>
 
