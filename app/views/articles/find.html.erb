@@ -1,0 +1,11 @@
+<div class="articles-list">
+  <% @articles.select { |article| article.status == "public" }.each do |article| %>
+    <div class="list-element">
+      <h2 class="title-header"><a href="/articles/<%= article.id %>"><%= article.title %></a></h2>
+      <h4><%= article.updated_at %></h4>
+    </div>
+  <% end %>
+  <% if @articles.size == 0 %>
+    <h2>There are no any found articles</h2>
+  <% end %>
+</div>
