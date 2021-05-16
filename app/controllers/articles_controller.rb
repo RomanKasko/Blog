@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user_id = current_user.id
 
     if @article.save
       redirect_to @article
@@ -35,6 +36,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def find
+    @articles = Article.all
+    @articles = @articles.select { |article| article.title.include? params[:q] }
+    @articles = Article.where(id: @articles.map(&:id)).order(updated_at: :desc).paginate(:page => params[:page], :per_page => 5)
+  end
+
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
@@ -42,7 +49,7 @@ class ArticlesController < ApplicationController
     redirect_to root_path
   end
 
-  # private
+  private
   def article_params
     params.require(:article).permit(:title, :body, :image, :status)
   end
