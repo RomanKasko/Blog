@@ -1,6 +1,8 @@
 <h1><%= @article.title %></h1>
+<p>Tags: <%= @article.all_tags %></p>
 <p>Posted: <%= time_ago_in_words @article.created_at %> ago.</p>
 <%= simple_format @article.body %>
+
 <% if user_signed_in? %>
   <% if current_user.id == @article.user_id %>
 <ul>

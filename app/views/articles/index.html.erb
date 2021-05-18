@@ -1,12 +1,16 @@
 <h1>Articles</h1>
 
-<ul>
-  <% @articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article %>
-      <br><time><%= article.created_at.to_date.strftime("%d %B, %Y") %></time>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col-8">
+    <% @articles.each do |article| %>
+      <div class="card p-3">
+        <h4><%= link_to article.title, article %></h4>
+        <%= raw article.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary'}.join(' ') %>
+        <p><%= truncate article.body, length: 200  %></p>
+        <br><time><%= article.created_at.to_date.strftime("%d %B, %Y") %></time>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <%= will_paginate @articles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
