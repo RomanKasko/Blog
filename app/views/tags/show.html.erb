@@ -1,0 +1,19 @@
+<h1><%= @tag.name  %></h1>
+<% if @tag.articles.empty? %>
+  <h2>There aren`t any articles</h2>
+<% else %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-8">
+        <% @articles.each do |article| %>
+          <div class="card p-3">
+            <h4><%= link_to article.title, article %></h4>
+            <%= raw article.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary'}.join(' ') %>
+            <p><%= truncate article.body, length: 200  %></p>
+            <br><time><%= article.created_at.to_date.strftime("%d %B, %Y") %></time>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
