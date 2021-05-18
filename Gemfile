@@ -28,8 +28,6 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'devise'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -48,16 +46,18 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  gem 'webdriver'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'acts-as-taggable-on', '~> 7.0'
+gem 'bootstrap', '~> 4.6'
+gem 'carrierwave', '~> 2.0'
+gem 'devise'
+gem 'mini_magick'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'will_paginate'
 gem 'will_paginate-bootstrap4'
-gem 'bootstrap', '~> 4.0.0.alpha4'
-gem 'carrierwave', '~> 2.0'
-gem 'mini_magick'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
